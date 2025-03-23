@@ -51,6 +51,26 @@ test('target', () => {
   expect(target).toBe(5000);
 });
 
+test('targetPath (default)', () => {
+  const { targetPath } = parse([]);
+  expect(targetPath).toBeUndefined();
+});
+
+test('targetPath', () => {
+  const { targetPath } = parse(['--target-path', '/api']);
+  expect(targetPath).toBe('/api');
+});
+
+test('defaultTarget (default)', () => {
+  const { defaultTarget } = parse([]);
+  expect(defaultTarget).toBeUndefined();
+});
+
+test('defaultTarget', () => {
+  const { defaultTarget } = parse(['--default-target', '5000']);
+  expect(defaultTarget).toBe(5000);
+});
+
 test('config', () => {
   const config = parse(['--config', require.resolve('./test-config.json')]);
   expect(config).toMatchInlineSnapshot(`
@@ -64,10 +84,12 @@ test('config', () => {
   },
   "Proxy 2": {
     "cert": "/etc/apache2/server.pem",
+    "defaultTarget": 5000,
     "hostname": "localhost",
     "key": "/etc/apache2/server.key",
     "source": 5001,
     "target": 3001,
+    "targetPath": "/api",
   },
 }
 `);

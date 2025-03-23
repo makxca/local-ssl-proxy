@@ -17,6 +17,8 @@ const program = createCommand(name)
   .option('-n, --hostname <hostname>', 'hostname for the server', 'localhost')
   .option('-s, --source <source>', 'source port for the server', parseInteger, 9001)
   .option('-t, --target <target>', 'target port for the server', parseInteger, 9000)
+  .option('-p, --target-path <target-path>', 'path to send all queries to target')
+  .option('-d, --default-target <target>', 'target which all other queries are proxied to', parseInteger)
   .option(
     '-c, --cert <cert>',
     'path to SSL certificate',
@@ -32,6 +34,8 @@ type Proxy = {
   target: number;
   cert: string;
   key: string;
+  targetPath?: string;
+  defaultTarget?: number;
 };
 
 type Config = { config: Record<string, Proxy> };

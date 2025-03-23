@@ -11,6 +11,8 @@
     "source": 5001,
     "target": 3001,
     "cert": "/etc/apache2/server.pem",
-    "key": "/etc/apache2/server.key"
+    "key": "/etc/apache2/server.key",
+    "defaultTarget": 5000,
+    "targetPath": "/api"
   }
 }
